@@ -7,22 +7,27 @@ const newsAdapter = createEntityAdapter({
 });
 
 const initialState = newsAdapter.getInitialState({
-    activeCategory: '',
+    category: 'general',
+    country: 'us',
     loadingStatus: 'idle'
 });
 
 export const fetchNews = createAsyncThunk(
     'fetchNews',
-    async () => {
+    async ({country, category}) => {
         const {request} = useHttp();
-        const {apiUrl} = newsService();
-        return await request(apiUrl)
+        const {apiUrlHeadlines} = newsService(country, category);
+        return await request(apiUrlHeadlines)
     }
 );
 
 const mainSlice = createSlice({
     name: 'news',
     initialState,
+    reducers: {
+        categoryChanged: (state, action) => {state.category = action.payload},
+        countryChanged: (state, action) => {state.country = action.payload}
+    },
     extraReducers: builder => {
         builder 
             .addCase(fetchNews.pending, state => {state.loadingStatus = 'loading'})
@@ -38,10 +43,12 @@ const {selectAll} = newsAdapter.getSelectors(state => state.news);
 
 export const newsArray = createSelector(
     selectAll,
-    news =>  news
+    news => news
 );
 
 export const {
+    categoryChanged,
+    countryChanged,
     fetchingNews, 
     fetchedNews,
     fetchingNewsError

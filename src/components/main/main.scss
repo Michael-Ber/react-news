@@ -1,0 +1,31 @@
+.app-main {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 105px 50px 105px;
+    background-color: #909090;
+    color: #fff;
+    &__left {
+        flex: 0 0 calc(60% - 60px);
+    }
+    &__right {
+        flex: 0 0 calc(40% - 60px);
+    }
+    &__header {
+        display: flex;
+        gap: 15px;
+    }
+    &__category {
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    &__title {
+        font-size: 60px;
+        margin-top: 30px;
+    }
+    &__time {
+
+    }
+}
+
+

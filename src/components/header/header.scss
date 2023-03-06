@@ -1,0 +1,71 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 105px;
+    color: #fff;
+    background-color: #909090;
+    border-bottom: 1px solid #fff;
+    &__links {
+        display: flex;
+        align-items: center;
+    }
+    &__countries {
+        display: flex;
+        align-items: center;
+    }
+    &__item {
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            transition: .3s all;
+            height: 2px;
+            background-color: #fff;
+        }
+        &:hover::after {
+            width: 100%;
+            
+        }
+        & + & {
+            margin-left: 40px;
+        }
+    }
+    &__link {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    &__select-wrapper {
+        position: relative;
+        width: 100px;
+        margin-left: 40px;
+        z-index: 10;
+        cursor: pointer;
+        img {
+            position: absolute;
+            left: 50%;      
+            top: 55%;      
+            transform: rotate(90deg) translateX(-50%);
+            z-index: -1;
+        }
+        
+    }
+    &__select-item {
+        padding: 10px;  
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        appearance: none;
+        cursor: pointer;
+        
+    }
+    &__option {
+        color: #000;
+    }
+
+}
