@@ -14,9 +14,9 @@ const initialState = newsAdapter.getInitialState({
 
 export const fetchNews = createAsyncThunk(
     'fetchNews',
-    async ({country, category}) => {
+    async ({country, category, pageSize}) => {
         const {request} = useHttp();
-        const {apiUrlHeadlines} = newsService(country, category);
+        const {apiUrlHeadlines} = newsService(country, category, pageSize);
         return await request(apiUrlHeadlines)
     }
 );
@@ -31,7 +31,7 @@ const mainSlice = createSlice({
     extraReducers: builder => {
         builder 
             .addCase(fetchNews.pending, state => {state.loadingStatus = 'loading'})
-            .addCase(fetchNews.fulfilled, (state, action) => {console.log(action.payload.articles);state.loadingStatus = 'idle'; newsAdapter.setAll(state, action.payload.articles)})
+            .addCase(fetchNews.fulfilled, (state, action) => {state.loadingStatus = 'idle'; newsAdapter.setAll(state, action.payload.articles)})
             .addCase(fetchNews.rejected, state => {state.loadingStatus = 'error'})
     }
 });

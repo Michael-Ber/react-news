@@ -23,6 +23,13 @@
         font-size: 60px;
         margin-top: 30px;
     }
+    &__link {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
     &__time {
 
     }
