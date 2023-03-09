@@ -11,11 +11,13 @@ const initialState = latestAdapter.getInitialState({
     latestCountry: 'us',
     latestLoadingStatus: 'idle'
 });
+
 export const fetchLatestNews = createAsyncThunk(
-    'fetchNews',
+    'fetchLatestNews',
     async ({country, category, pageSize}) => {
         const {request} = useHttp();
         const {apiUrlHeadlines} = newsService(country, category, pageSize);
+        console.log('CALL', category);
         return await request(apiUrlHeadlines)
     }
 );

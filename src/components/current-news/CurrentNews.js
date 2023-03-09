@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {  fetchNews, newsArray } from "../main/MainSlice";
 import { nanoid } from '@reduxjs/toolkit';
@@ -7,32 +7,32 @@ import NewsItem from './NewsItem';
 import NewsContent from './NewsContent';
 import './currentNews.scss';
 
-const CurrentNews = () => {
+const CurrentNews = memo((props) => {
     const {loadingStatus} = useSelector(state => state.news);
-    const {country} = useSelector(state => state.news);
+    // const {country} = useSelector(state => state.news);
     const {category} = useSelector(state => state.news);
     const news = useSelector(newsArray);
     const [firstNews] = news;
-    const [currentNews, setCurrentNews] = useState(null);
+    const [currentNews, setCurrentNews] = useState(firstNews);
     const [activeNews, setActiveNews] = useState(0);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     
-    const handleNews = (i) => {
+    const handleNews = useCallback((i) => {
         setCurrentNews(news[i]);
         setActiveNews(i);
-    }
+    }, [setCurrentNews, setActiveNews, news])
 
-    useEffect(() => {
-        dispatch(fetchNews({country, category}))
+
+    // useEffect(() => {
+    //     dispatch(fetchNews({country, category}))
             
-    }, [])
+    // }, [])
 
     useEffect(() => {
         setCurrentNews(firstNews)
     }, [firstNews])
 
-    console.log('render');
-    
+
     if(loadingStatus === 'loading' || news.length === 0) {
         return <Spinner />
     }
@@ -48,6 +48,6 @@ const CurrentNews = () => {
             </div>
         </div>
     )
-}
+})
 
 export default CurrentNews;

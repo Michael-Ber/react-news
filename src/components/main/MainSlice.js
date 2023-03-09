@@ -16,6 +16,7 @@ export const fetchNews = createAsyncThunk(
     'fetchNews',
     async ({country, category, pageSize}) => {
         const {request} = useHttp();
+        console.log('call');
         const {apiUrlHeadlines} = newsService(country, category, pageSize);
         return await request(apiUrlHeadlines)
     }

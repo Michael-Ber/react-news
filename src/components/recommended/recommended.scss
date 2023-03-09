@@ -1,0 +1,58 @@
+.app-recommended {
+    margin-top: 120px;
+    padding: 0 105px;
+    
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 65px;
+    }
+    &__title {
+        
+    }
+    &__pagination {
+        display: flex;
+        align-items: center;
+    }
+    &__nums {
+        display: flex;
+        margin: 0 30px;
+        .invisible {
+            display: none;
+        }
+        .visible {
+            display: flex;
+        }
+    }
+    &__num {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+        cursor: pointer;
+        &_active {
+            background-color: #109be9;
+            color: #fff;
+            border-radius: 5px;
+        }
+        & + & {
+            margin-left: 15px;
+        }
+    }
+    &__carousel {
+        overflow: hidden;
+    }
+    &__carousel-wrapper {
+        width: 100%;
+    }
+    &__list {
+       display: flex;
+       gap: 15px; 
+    }
+    &__more {
+        display: block;
+        margin: 60px auto 0 auto;
+    }
+}
