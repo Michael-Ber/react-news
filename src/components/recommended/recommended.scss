@@ -50,6 +50,7 @@
     &__list {
        display: flex;
        gap: 15px; 
+       transition: .3s all ease-in-out;
     }
     &__more {
         display: block;
