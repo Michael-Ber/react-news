@@ -9,6 +9,7 @@ const newsAdapter = createEntityAdapter({
 const initialState = newsAdapter.getInitialState({
     category: 'general',
     country: 'us',
+    language: 'en',
     loadingStatus: 'idle'
 });
 
@@ -16,8 +17,8 @@ export const fetchNews = createAsyncThunk(
     'fetchNews',
     async ({country, category, pageSize}) => {
         const {request} = useHttp();
-        console.log('call');
         const {apiUrlHeadlines} = newsService(country, category, pageSize);
+        console.log(apiUrlHeadlines);
         return await request(apiUrlHeadlines)
     }
 );

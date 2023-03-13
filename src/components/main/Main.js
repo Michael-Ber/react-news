@@ -11,10 +11,9 @@ const Main = memo(() => {
     const {category} = useSelector(state => state.news);
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(fetchNews({country, category: 'science'}))
-    // }, [])
-
+    useEffect(() => {
+        dispatch(fetchNews({country, category}))
+    }, [])
     return (
         <section className="app-main">
             <div className="app-main__left">
@@ -23,7 +22,6 @@ const Main = memo(() => {
             <div className="app-main__right">
                 <Popular />
             </div>
-
         </section>
     )
 })

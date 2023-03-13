@@ -7,13 +7,14 @@
     &__list {
         display: grid;
         grid-template-columns: repeat(4, 296px);
-        column-gap: 15px;
+        grid-template-rows: 475px;
+        column-gap: 25px;
         row-gap: 25px;
         justify-content: space-between;
         list-style-type: none;
     }
     &__more {
         display: block;
-        margin: 20px auto 0 auto;
+        margin: 100px auto 0 auto;
     }
 }

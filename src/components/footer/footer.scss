@@ -1,0 +1,37 @@
+.footer-app {
+    margin-top: 120px;
+    padding: 0 105px;
+    &__list {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+    }
+    &__column {
+
+    }
+    &__logo {
+        font-size: 30px;
+        color: #000;
+        text-decoration: none;
+    }
+    &__sublist-list {
+
+    }
+    &__sublist-item {
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: capitalize;
+        & + & {
+            margin-top: 15px;
+        }
+        &_header {
+            font-weight: 700;
+        }
+    }
+    &__sublist-link {
+        color: #000;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

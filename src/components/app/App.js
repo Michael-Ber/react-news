@@ -4,6 +4,7 @@ import Header from "../header/Header";
 import './app.scss';
 import LatestPost from "../latest/LatestPost";
 import Recommended from "../recommended/Recommended";
+import Footer from "../footer/Footer";
 
 function App() {
 	
@@ -14,6 +15,7 @@ function App() {
 				<Main/>
 				<LatestPost/>
 				<Recommended />
+				<Footer />
 				{/* <Routes>
 					<Route 
 						path="/"

@@ -13,7 +13,7 @@ const Popular = memo((props) => {
     const news = useSelector(newsArray);
     // const dispatch = useDispatch();
 
-    
+    console.log(news);
 
     
 
