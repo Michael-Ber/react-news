@@ -1,6 +1,6 @@
-import { useEffect, useState, memo, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {  fetchNews, newsArray } from "../main/MainSlice";
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
+import { newsArray } from "../news/NewsSlice";
 import Spinner from '../spinner/Spinner';
 import PopularItem from './PopularItem';
 import { nanoid } from '@reduxjs/toolkit';
@@ -8,12 +8,9 @@ import './popular.scss';
 
 const Popular = memo((props) => {
     const {loadingStatus} = useSelector(state => state.news);
-    // const {country} = useSelector(state => state.news);
     const {category} = useSelector(state => state.news);
     const news = useSelector(newsArray);
-    // const dispatch = useDispatch();
 
-    console.log(news);
 
     
 
@@ -25,8 +22,10 @@ const Popular = memo((props) => {
         })
     }
 
-    if(loadingStatus === 'loading' || news.length === 0) {
+    if(loadingStatus === 'loading') {
         return <Spinner />
+    }else if(news.length === 0) {
+        return <h2>Статей нет</h2>
     }
 
     const elements =  renderItems(news);

@@ -1,0 +1,28 @@
+.item-search-page {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 360px;
+    column-gap: 105px;
+    & + & {
+        margin-top: 15px;
+    }
+    &__right {
+        padding: 0 100px;
+        color: #000;
+    }
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+    &__info {
+        color: #9a9ab0;
+        margin-bottom: 25px;
+    }
+    &__content {
+        font-size: 16px;
+    }
+    &__time {
+        margin-left: 15px;
+    }
+}

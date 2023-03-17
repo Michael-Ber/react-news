@@ -12,7 +12,7 @@ const NewsContent = ({category, currentNews}) => {
                 <h2 className="app-main__category">{category}</h2>
                 <span className="app-main__time">2 hours ago</span>
             </div>
-            <Link to={`/${category}/${title}`} className="app-main__link">
+            <Link to={currentNews.url} className="app-main__link">
                 <h1 className="app-main__title">{title}</h1>
             </Link>
         </div>

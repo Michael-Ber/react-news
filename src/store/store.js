@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import news from '../components/main/MainSlice';
-import latestNews from '../components/latest/LatestSlice';
+import news from '../components/news/NewsSlice';
+import searchNews from '../components/search/SearchSlice';
 
 const logger = storeAPI => next => action => {
     console.log('dispatching', action);
@@ -10,7 +10,7 @@ const logger = storeAPI => next => action => {
 }
 
 const store = configureStore({
-    reducer: {news, latestNews},
+    reducer: {news},
     devTools: process.env.NODE_ENV !== 'production',
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
 });

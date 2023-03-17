@@ -1,23 +1,15 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState, memo, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useState, memo} from 'react';
 import { nanoid } from '@reduxjs/toolkit';
-import Spinner from '../spinner/Spinner';
 import RecommendedItem from './RecommendedItem';
-import { newsArray } from '../main/MainSlice';
-// import {ReactComponent as Prev} from './arrow.svg';
-import Arrow from '../arrow/Arrow';
+import { newsArray } from '../news/NewsSlice';
 import Pagination from './Pagination';
 
 import './recommended.scss';
 
 const Recommended = memo(() => {
-    const {loadingStatus} = useSelector(state => state.news);
-    const {country} = useSelector(state => state.news);
     const {category} = useSelector(state => state.news);
     const news = useSelector(newsArray);
-
-    
-    // const categories = ['general', 'business', 'entertainment', 'health', 'science', 'technology', 1, 1, 1, 1 ,1 ,1];
 
     const totalSlides = news.length;
     const [slide, setSlide] = useState(1);
@@ -30,7 +22,12 @@ const Recommended = memo(() => {
     const translateWidth = slideWidth + gapWidth;
     const [offset, setOffset] = useState(0);
 
-    
+    const elements = news.length > 0 ? news.map((item, i) => {
+                return (
+                    <RecommendedItem key={nanoid()} {...item} category={category} />
+                )
+            }) : <h2>Статей нет</h2>
+    const listStyleNoArticles = news.length === 0 && {width: '200px'}
     return (
         <div className="app-recommended">
             <div className="app-recommended__header">
@@ -50,13 +47,9 @@ const Recommended = memo(() => {
             <div className="app-recommended__carousel">
                 <div className="app-recommended__carousel-wrapper">
                     <ul 
-                        style = {{width: `${carouselWidth}px`, transform: `translateX(${-offset}px)`}} 
+                        style = {{width: `${carouselWidth}px`, transform: `translateX(${-offset}px)`, ...listStyleNoArticles}} 
                         className="app-recommended__list">
-                        {news.map((item, i) => {
-                            return (
-                                <RecommendedItem key={nanoid()} {...item} category={category} />
-                            )
-                        })}
+                        {elements}
                     </ul>
                 </div>
             </div>

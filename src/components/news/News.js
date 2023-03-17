@@ -1,9 +1,9 @@
 import { memo, useEffect } from "react";
-import {  fetchNews } from "../main/MainSlice";
+import {  fetchNews } from "./NewsSlice";
 import { useSelector, useDispatch } from 'react-redux';
 import CurrentNews from "../current-news/CurrentNews";
 import Popular from "../popular/Popular";
-import './main.scss';
+import './news.scss';
 
 
 const Main = memo(() => {
@@ -13,7 +13,7 @@ const Main = memo(() => {
 
     useEffect(() => {
         dispatch(fetchNews({country, category}))
-    }, [])
+    }, [category, country])
     return (
         <section className="app-main">
             <div className="app-main__left">

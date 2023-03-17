@@ -1,6 +1,6 @@
 import { useEffect, useState, memo, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {  fetchNews, newsArray } from "../main/MainSlice";
+import { newsArray } from "../news/NewsSlice";
 import { nanoid } from '@reduxjs/toolkit';
 import Spinner from '../spinner/Spinner';
 import NewsItem from './NewsItem';
@@ -9,7 +9,6 @@ import './currentNews.scss';
 
 const CurrentNews = memo((props) => {
     const {loadingStatus} = useSelector(state => state.news);
-    // const {country} = useSelector(state => state.news);
     const {category} = useSelector(state => state.news);
     const news = useSelector(newsArray);
     const [firstNews] = news;
@@ -22,19 +21,15 @@ const CurrentNews = memo((props) => {
         setActiveNews(i);
     }, [setCurrentNews, setActiveNews, news])
 
-
-    // useEffect(() => {
-    //     dispatch(fetchNews({country, category}))
-            
-    // }, [])
-
     useEffect(() => {
         setCurrentNews(firstNews)
     }, [firstNews])
 
 
-    if(loadingStatus === 'loading' || news.length === 0) {
+    if(loadingStatus === 'loading') {
         return <Spinner />
+    }else if(news.length === 0) {
+        return <h2>Статей нет</h2>
     }
     return (
         <div className="app-main__tabs tabs-app-main">
