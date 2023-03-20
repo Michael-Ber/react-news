@@ -1,4 +1,5 @@
 .app-header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,9 +7,18 @@
     color: #fff;
     background-color: #909090;
     border-bottom: 1px solid #fff;
+    @media(max-width: 1199px) {
+        padding: 25px 50px;
+    }
+    @media(max-width: 575px) {
+        padding: 25px 25px;
+    }
     &__links {
         display: flex;
         align-items: center;
+        @media(max-width: 991px) {
+            display: none;
+        }
     }
     &__countries {
         display: flex;
@@ -32,6 +42,12 @@
         }
         & + & {
             margin-left: 40px;
+            @media(max-width: 575px) {
+                margin-left: 10px;
+            }
+        }
+        @media(max-width: 575px) {
+            font-size: 14px;
         }
         &_active {
             color: orange;
@@ -99,35 +115,67 @@
             text-decoration: underline;
         }
     }
+    &__burger {
+        display: none;
+        @media(max-width: 991px) {
+            display: block;
+        }
+    }
+}
 
-    // &__select-wrapper {
-    //     position: relative;
-    //     width: 100px;
-    //     margin-left: 40px;
-    //     z-index: 10;
-    //     cursor: pointer;
-    //     img {
-    //         position: absolute;
-    //         left: 50%;      
-    //         top: 55%;      
-    //         transform: rotate(90deg) translateX(-50%);
-    //         z-index: -1;
-    //     }
-        
-    // }
-    // &__select-item {
-    //     padding: 10px;  
-    //     background-color: transparent;
-    //     border: none;
-    //     outline: none;
-    //     color: #fff;
-    //     appearance: none;
-    //     cursor: pointer;
-        
-    // }
-    // &__option {
-    //     color: #000;
-    //     text-transform: capitalize;
-    // }
-
+.burger-app-header {
+    &__btn {
+        cursor: pointer;
+    }
+    &__line {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: #fff;
+        & + & {
+            margin-top: 5px;
+        }
+    }
+    &__list {
+        list-style-type: none;
+    }
+    &__item {
+        & + & {
+            margin-top: 30px;
+        }
+    }
+    &__link {
+        text-transform: capitalize;
+        &_active {
+            color: orange;
+        }
+        &:hover {
+            color: orange;
+        }
+    }
+    &__close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        &:hover {
+            color: orange;
+        }
+    }
+    &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100vh;
+        background-color: #000;
+        transition: .3s all;
+        transform: translateX(-100%);
+        z-index: 1000;
+    }
 }

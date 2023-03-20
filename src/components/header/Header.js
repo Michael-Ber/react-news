@@ -4,7 +4,7 @@ import arrow from './arrow.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { Context } from '../../service/Context';
 import { ContextCountries } from '../../service/ContextCountries';
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { categoryChanged, countryChanged } from '../news/NewsSlice';
 
 const Header = () => {
@@ -16,6 +16,8 @@ const Header = () => {
     const categoriesDropDown = categories.slice(4, categories.length);
     const countries = useContext(ContextCountries);
     const dispatch = useDispatch();
+
+    const burgerContentRef = useRef(null);
 
     const updateCategory = (category) => {
         dispatch(categoryChanged(category))
@@ -98,12 +100,57 @@ const Header = () => {
         })
     };
 
+    const renderBurgerLinks = (arr) => {
+        return arr.map((obj, i) => {
+            const categoryEn = Object.keys(obj)[0];
+            const categoryRu = Object.values(obj)[0];
+            const linkClassName = category === categoryEn ? "burger-app-header__link burger-app-header__link_active": "burger-app-header__link";
+            return (
+                <li className="burger-app-header__item">
+                    <Link 
+                        to={`/${categoryEn}`} 
+                        onClick={closeBurgerMenu}
+                        className={linkClassName}>
+                            {categoryRu}
+                    </Link>
+                </li>
+            )
+        })
+    }
+
+    const openBurgerMenu = () => {
+        burgerContentRef.current.style.transform = 'translateX(0%)';
+    }
+    const closeBurgerMenu = () => {
+        burgerContentRef.current.style.transform = 'translateX(-100%)';
+    }
+
     const linkItems = renderLinks(categoriesLinks);
     const selectItems = renderDropoDownItems(categoriesDropDown);
     const countriesItems = renderCountries(countries);
+    const burgerItems = renderBurgerLinks(categories)
 
     return (
         <div className="app-header">
+            <div className="app-header__burger burger-app-header">
+                <div 
+                    onClick={openBurgerMenu} 
+                    className="burger-app-header__btn">
+                    <span className='burger-app-header__line'></span>
+                    <span className='burger-app-header__line'></span>
+                    <span className='burger-app-header__line'></span>
+                </div>
+                <div ref={burgerContentRef} className="burger-app-header__content">
+                    <ul className="burger-app-header__list">
+                        <div
+                            onClick={closeBurgerMenu} 
+                            className="burger-app-header__close">
+                                &#x2715;
+                        </div>
+                        {burgerItems}
+                    </ul>
+                </div>
+            </div>
             <ul className="app-header__links">
                 {linkItems}
                 {selectItems}

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import dateChangeToUTC from '../utils/dateChangeToUTC';
 import './latestPostItem.scss';
 import noImage from '../../assets/no_image.jpg';
@@ -20,7 +19,6 @@ const LatestPostItem = ({category, title, author, url, urlToImage, publishedAt})
         utcNowMinutes
     } = dateChangeToUTC(publishedAt);
 
-    console.log(utcMonth, utcDate, utcHours, utcMinutes,utcNowMonth, utcNowDate, utcNowHours, utcNowMinutes);
     const onErrorImg = (e) => {
         return e.type === 'error' ? e.target.src = noImage : null;
         

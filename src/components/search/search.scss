@@ -6,12 +6,26 @@
     background-color: #909090;
     padding: 25px 105px;
     border-bottom: 1px solid #fff;
+    @media(max-width: 991px) {
+        padding: 25px 50px;
+    }
+    @media(max-width: 575px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 25px 25px;
+    }
     &__logo {
         font-size: 30px;
         color: #fff;
+        @media(max-width: 575px) {
+            font-size: 22px;
+        }
     }
     &__wrapper {
         flex: 0 0 60%;
+        @media(max-width: 575px) {
+            flex: 0 0 100%;
+        }
     }
     &__form {
         position: relative;

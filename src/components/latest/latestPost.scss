@@ -12,6 +12,10 @@
         row-gap: 25px;
         justify-content: space-between;
         list-style-type: none;
+        @media(max-width: 1499px) {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 296px));
+            justify-content: center;
+        }
     }
     &__more {
         display: block;
