@@ -2,10 +2,14 @@
     &__pagination {
         display: flex;
         align-items: center;
+        justify-content: center;
     }
     &__nums {
         display: flex;
         margin: 0 30px;
+        @media(max-width: 575px) {
+            margin: 0 15px;
+        }
         .invisible {
             display: none;
         }
@@ -28,6 +32,9 @@
         }
         & + & {
             margin-left: 15px;
+            @media(max-width: 575px) {
+                margin-left: 10px;
+            }
         }
     }
 }

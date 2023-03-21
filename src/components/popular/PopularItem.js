@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import './popularItem.scss';
 
-const PopularItem = memo(({title, urlToImage, url, category, elementNumber}) => {
+const PopularItem = memo(({title, urlToImage, url, category}) => {
     const renderTitle = (str) => {
         return str.length > 100 ? str.slice(0, 100) + ' ...': str;
     }

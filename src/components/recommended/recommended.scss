@@ -1,14 +1,23 @@
 .app-recommended {
     margin-top: 120px;
     padding: 0 105px;
-    
+    @media(max-width: 575px) {
+        padding: 0 20px;
+    }
     &__header {
         display: flex;
         justify-content: space-between;
         margin-bottom: 65px;
+        @media(max-width: 767px) {
+            flex-direction: column;
+        }
     }
     &__title {
-        
+        @media(max-width: 767px) {
+            font-size: 20px; 
+            margin-bottom: 20px; 
+            text-align: center; 
+        }
     }
    
     

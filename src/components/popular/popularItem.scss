@@ -12,6 +12,10 @@
         display: flex;
         align-items: center;
         gap: 25px;
+        @media(max-width: 575px) {
+            flex-direction: column;
+            gap: 10px;
+        }
     }
     &__img {
         flex: 0 0 144px;

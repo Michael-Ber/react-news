@@ -1,8 +1,15 @@
 .app-latest {
     margin-top: 120px;
     padding: 0 105px;
+    @media(max-width: 575px) {
+        padding: 0 20px;
+    }
     &__title {
         margin-bottom: 65px;
+        @media(max-width: 575px) {
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
     }
     &__list {
         display: grid;

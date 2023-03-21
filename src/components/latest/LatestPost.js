@@ -1,22 +1,13 @@
-import { useSelector } from 'react-redux';
+import withStoreData from '../HOC/withStoreData';
 import { useState, memo } from 'react';
-import {  newsArray} from "../news/NewsSlice";
 import { nanoid } from '@reduxjs/toolkit';
-import Spinner from '../spinner/Spinner';
 import LatestPostItem from './LatestPostItem';
 import './latestPost.scss';
 
-const LatestPost = memo(() => {
-    const {loadingStatus} = useSelector(state => state.news);
-    const {category} = useSelector(state => state.news);
-    const news = useSelector(newsArray);
+const LatestPost = memo(({news, category}) => {
     const startRangeArray = 8;
     const newsPerCount = 8;
     const [endRangeArray, setEndRangeArray] = useState(startRangeArray + newsPerCount);
-
-    if(loadingStatus === 'loading') {
-        return <Spinner />
-    }
 
     const handleMore = () => {
         setEndRangeArray(prevValue => prevValue + newsPerCount)
@@ -40,4 +31,4 @@ const LatestPost = memo(() => {
     )
 })
 
-export default LatestPost;
+export default withStoreData(LatestPost);

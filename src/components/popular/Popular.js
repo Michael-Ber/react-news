@@ -1,31 +1,17 @@
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
-import { newsArray } from "../news/NewsSlice";
-import Spinner from '../spinner/Spinner';
+import withStoreData from '../HOC/withStoreData';
 import PopularItem from './PopularItem';
 import { nanoid } from '@reduxjs/toolkit';
 import './popular.scss';
 
-const Popular = memo((props) => {
-    const {loadingStatus} = useSelector(state => state.news);
-    const {category} = useSelector(state => state.news);
-    const news = useSelector(newsArray);
-
-
-    
+const Popular = memo(({news, category}) => {
 
     const renderItems = (arr) => {
         return arr.slice(2, 7).map((item, i) => {
             return (
-                <PopularItem key={nanoid()} category={category} {...item} elementNumber = {i}/>
+                <PopularItem key={nanoid()} category={category} {...item}/>
             )
         })
-    }
-
-    if(loadingStatus === 'loading') {
-        return <Spinner />
-    }else if(news.length === 0) {
-        return <h2>Статей нет</h2>
     }
 
     const elements =  renderItems(news);
@@ -39,4 +25,4 @@ const Popular = memo((props) => {
     )
 })
 
-export default Popular;
+export default withStoreData(Popular);

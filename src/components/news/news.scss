@@ -11,6 +11,9 @@
         flex-wrap: wrap;
         justify-content: center;
     }
+    @media(max-width: 575px) {
+        padding: 80px 20px 50px 20px;
+    }
     &__left {
         flex: 0 0 calc(60% - 60px);
         
@@ -51,6 +54,9 @@
         }
         @media(max-width: 1199px) {
             font-size: 30px;
+        }
+        @media(max-width: 575px) {
+            font-size: 20px;
         }
     }
     &__link {

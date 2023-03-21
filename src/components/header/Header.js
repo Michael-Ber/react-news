@@ -106,7 +106,7 @@ const Header = () => {
             const categoryRu = Object.values(obj)[0];
             const linkClassName = category === categoryEn ? "burger-app-header__link burger-app-header__link_active": "burger-app-header__link";
             return (
-                <li className="burger-app-header__item">
+                <li key={i} className="burger-app-header__item">
                     <Link 
                         to={`/${categoryEn}`} 
                         onClick={closeBurgerMenu}

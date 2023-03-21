@@ -1,32 +1,37 @@
-import { useSelector } from 'react-redux';
-import { useState, memo} from 'react';
+import withStoreData from '../HOC/withStoreData';
+import { useState, memo, useEffect } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import RecommendedItem from './RecommendedItem';
-import { newsArray } from '../news/NewsSlice';
 import Pagination from './Pagination';
 
 import './recommended.scss';
 
-const Recommended = memo(() => {
-    const {category} = useSelector(state => state.news);
-    const news = useSelector(newsArray);
+const Recommended = memo(({news, category}) => {
 
     const totalSlides = news.length;
     const [slide, setSlide] = useState(1);
     const [limit] = useState(12);
     const [siblings] = useState(1);
+    const [slideWidth, setSlideWidth] = useState(750);
 
-    const slideWidth = 750;
     const gapWidth = 15;
     const carouselWidth = news.length * (slideWidth + gapWidth);
     const translateWidth = slideWidth + gapWidth;
     const [offset, setOffset] = useState(0);
 
+    useEffect(() => {
+        if(window.matchMedia('(max-width: 575px)').matches) {
+            setSlideWidth(280);
+        }else if(window.matchMedia('(max-width: 767px)').matches) {
+            setSlideWidth(366);
+        }
+    }, [])
+
     const elements = news.length > 0 ? news.map((item, i) => {
-                return (
-                    <RecommendedItem key={nanoid()} {...item} category={category} />
-                )
-            }) : <h2>Статей нет</h2>
+        return (
+            <RecommendedItem key={nanoid()} {...item} category={category} />
+        )
+    }) : <h2>Статей нет</h2>
     const listStyleNoArticles = news.length === 0 && {width: '200px'}
     return (
         <div className="app-recommended">
@@ -58,4 +63,4 @@ const Recommended = memo(() => {
     )
 })
 
-export default Recommended;
+export default withStoreData(Recommended);

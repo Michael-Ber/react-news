@@ -16,15 +16,15 @@ function App() {
 	const urlActual = useLocation().pathname;
 	const categoryFromUrl = urlActual.slice(1, urlActual.length);
 	const dispatch = useDispatch();
-	
 	useEffect(() => {
 		nav('/general');
 	}, [])
-
+	
 	useEffect(() => {
 		dispatch(categoryChanged(categoryFromUrl))
 		nav(urlActual);
 	}, [urlActual])
+	
 	
 	return (
 		<div className="app">

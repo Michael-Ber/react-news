@@ -1,7 +1,7 @@
 .tabs-app-main {
     &__item {
         flex: 0 0 296px;
-        height: 190px;
+        // height: 190px;
         background-color: transparent;
         padding: 15px 15px 8px 15px;
         cursor: pointer;
@@ -11,6 +11,9 @@
         }
         &:hover {
             background-color: rgba(#fff, .1);
+        }
+        @media(max-width: 575px) {
+            flex: 0 0 100%;
         }
     }
     &__img {
