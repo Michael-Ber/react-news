@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import './recommendedItem.scss';
 import noImage from '../../assets/no_image.jpg';
 
-const RecommendedItem = ({category, title, url, urlToImage, author}) => {
+const RecommendedItem = ({category, title, url, urlToImage, author, date}) => {
 
     const titleEdited = title.length > 50 ? title.slice(0, 50) + ' ...': title;
     const authorEdited = author ? author : 'От редакции';
@@ -26,7 +26,7 @@ const RecommendedItem = ({category, title, url, urlToImage, author}) => {
                 </div>
                 <h2 className="item-app-recommended__title">{titleEdited}</h2>
                 <span className="item-app-recommended__author">{authorEdited}</span>
-                <span className="item-app-recommended__time">2 hours ago</span>
+                <span className="item-app-recommended__time">{date}</span>
             </Link>
         </li>
     )

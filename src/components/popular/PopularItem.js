@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import './popularItem.scss';
 
-const PopularItem = memo(({title, urlToImage, url, category}) => {
+const PopularItem = memo(({title, urlToImage, url, category, date}) => {
     const renderTitle = (str) => {
         return str.length > 100 ? str.slice(0, 100) + ' ...': str;
     }
@@ -16,7 +16,7 @@ const PopularItem = memo(({title, urlToImage, url, category}) => {
                     </div>
                     <div className="item-popular-app-main__content">
                         <span className="item-popular-app-main__category">{category}</span>
-                        <span className="item-popular-app-main__time">2 hours ago</span>
+                        <span className="item-popular-app-main__time">{date}</span>
                         <h2 className="item-popular-app-main__title">{modifiedTitle}</h2>
                     </div>
                 </div>

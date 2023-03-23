@@ -2,6 +2,7 @@ import withStoreData from '../HOC/withStoreData';
 import { useState, memo } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import LatestPostItem from './LatestPostItem';
+import withDate from '../HOC/withDate';
 import './latestPost.scss';
 
 const LatestPost = memo(({news, category}) => {
@@ -14,8 +15,10 @@ const LatestPost = memo(({news, category}) => {
     }
 
     const elements = news.length > startRangeArray ? news.slice(startRangeArray, endRangeArray).map((item, i) => {
+            const LatestPostItemWithDate = withDate(LatestPostItem, {...item, category});
             return (
-                <LatestPostItem key={nanoid()} {...item} category={category}/>
+                // <LatestPostItem key={nanoid()} {...item} category={category}/>
+                <LatestPostItemWithDate key={nanoid()}/>
             )
         }) : <h2>Статей нет</h2>
     const listStyleNoArticles = news.length === 0 ? {gridTemplateRows: 'auto'} : {};

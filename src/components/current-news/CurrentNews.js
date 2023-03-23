@@ -4,6 +4,7 @@ import withStoreData from '../HOC/withStoreData';
 import NewsItem from './NewsItem';
 import NewsContent from './NewsContent';
 import './currentNews.scss';
+import withDate from '../HOC/withDate';
 
 const CurrentNews = memo(({news, category}) => {
     const [firstNews] = news;
@@ -19,10 +20,12 @@ const CurrentNews = memo(({news, category}) => {
         setCurrentNews(firstNews)
     }, [firstNews])
 
+    const NewContentWithDate = withDate(NewsContent, {category, ...currentNews})
+
     return (
         <div className="app-main__tabs tabs-app-main">
             <div className="tabs-app-main__contents">
-                <NewsContent category={category} currentNews={currentNews}/>
+                {<NewContentWithDate/>}
             </div>
             <div className="tabs-app-main__items">
                 {news.slice(0, 2).map((item, i) => {

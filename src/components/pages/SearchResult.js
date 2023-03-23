@@ -1,21 +1,22 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { newsArray, fetchSearchNews } from '../news/NewsSlice';
-import Spinner from '../spinner/Spinner';
+import withDate from '../HOC/withDate';
 import SearchResultItem from '../../components/search/SearchResultItem';
 import './searchResult.scss';
+import { nanoid } from '@reduxjs/toolkit';
 
 const SearchResult = () => {
     const news = useSelector(newsArray);
-    const {loadingStatus} = useSelector(state=>state.news)
     const searchRequest = localStorage.getItem('searchRequest');
     const {language} = useSelector(state => state.news);
     const dispatch = useDispatch();
 
     const renderNews = (arr) => {
         return arr.map((item, i) => {
+            const SearchResultItemWithDate = withDate(SearchResultItem, {...item});
             return (
-                <SearchResultItem key={i} {...item} />
+                <SearchResultItemWithDate key={nanoid()} />
             )
         })
     }
@@ -24,8 +25,6 @@ const SearchResult = () => {
     }, [searchRequest])
 
     
-
-    console.log(news);
     const elements = renderNews(news);
     return (
         <div className="app-search-page search-page">

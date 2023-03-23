@@ -3,6 +3,7 @@ import { useState, memo, useEffect } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import RecommendedItem from './RecommendedItem';
 import Pagination from './Pagination';
+import withDate from '../HOC/withDate';
 
 import './recommended.scss';
 
@@ -28,8 +29,10 @@ const Recommended = memo(({news, category}) => {
     }, [])
 
     const elements = news.length > 0 ? news.map((item, i) => {
+        const RecommendedItemWithDate = withDate(RecommendedItem, {category, ...item});
         return (
-            <RecommendedItem key={nanoid()} {...item} category={category} />
+            // <RecommendedItem key={nanoid()} {...item} category={category} />
+            <RecommendedItemWithDate key={nanoid()} />
         )
     }) : <h2>Статей нет</h2>
     const listStyleNoArticles = news.length === 0 && {width: '200px'}
